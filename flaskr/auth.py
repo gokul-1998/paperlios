@@ -111,7 +111,7 @@ def faculty_register():
         if error is None:
             try:
                 db.execute(
-                    "INSERT INTO user (college_reg_no, password,email) VALUES (?, ?,?)",
+                    "INSERT INTO faculty (college_reg_no, password,email) VALUES (?, ?,?)",
                     (college_reg_no, generate_password_hash(password),email),
                 )
                 db.commit()
@@ -119,7 +119,7 @@ def faculty_register():
             except db.IntegrityError:
                 # The username was already taken, which caused the
                 # commit to fail. Show a validation error.
-                error = f"User {college_reg_no} or {email} is already registered."
+                error = f"faculty {college_reg_no} or {email} is already registered."
             else:
                 # Success, go to the login page.
                 print("before login")
@@ -139,7 +139,7 @@ def faculty_login():
         print("sadas")
         error = None
         user = db.execute(
-            "SELECT * FROM user WHERE college_reg_no = ?", (college_reg_no,)
+            "SELECT * FROM faculty WHERE college_reg_no = ?", (college_reg_no,)
         ).fetchone()
 
         if user is None:

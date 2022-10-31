@@ -1,0 +1,30 @@
+!<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <form method="post" action="/add_new_proposal">
+            <label for="title">TO</label>
+            <br>
+            <select name="to_email">
+                {% for mail in faculty %}
+                <br><option value={{ mail.email }} id="message" >{{ mail.email }} </option>
+                {% endfor %}
+              </select> 
+              <br>
+            <label for="event_description">event_description</label>
+            <textarea name="event_description" id="body">{{ request.form['body'] }}</textarea>
+        
+            <input type="submit" value="Save">
+          </form>
+        
+        <script src="" async defer></script>
+    </body>
+</html>

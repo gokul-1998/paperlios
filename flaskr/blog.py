@@ -28,6 +28,62 @@ def index():
 def welcome():
     return render_template("auth/welcome.html")
 
+@bp.route("/student_proposals")
+def new_proposals():
+    return render_template("blog/yourproposal.html")
+
+
+@bp.route("/add_new_proposal", methods=("GET", "POST"))
+def add_new_proposal():
+    """Create a new post for the current user."""
+    if request.method == "POST":
+        to_email = request.form["to_email"]
+        event_description = request.form["event_description"]
+        error = None
+
+        if not event_description:
+            error = "event_description is required."
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                "INSERT INTO proposal (to_email, event_description, author_id) VALUES (?, ?, ?)",
+                (to_email, event_description, g.user["id"]),
+            )
+            db.commit()
+            return redirect(url_for("blog.student_proposals"))
+    faculty = (
+        get_db()
+        .execute(
+            "SELECT email"
+            " FROM faculty"
+        )
+        .fetchall()
+    )
+    return render_template("blog/newproposal.html",faculty=faculty)
+    return render_template("blog/newproposal.html")
+        
+    faculty = (
+        get_db()
+        .execute(
+            "SELECT email"
+            " FROM faculty"
+        )
+        .fetchall()
+    )
+    return render_template("blog/newproposal.html",faculty=faculty)
+
+@bp.route("/student_duty_leave")
+def student_duty_leave():
+    return render_template("blog/yourproposal.html")
+
+@bp.route("/student_bus_pass")
+def student_bus_pass():
+    return render_template("blog/yourproposal.html")
+
+
 def get_post(id, check_author=True):
     """Get a post and its author by id.
 
