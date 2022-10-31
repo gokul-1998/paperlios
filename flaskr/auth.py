@@ -109,11 +109,11 @@ def student_login():
             # store the user id in a new session and return to the index
             session.clear()
             session["user_id"] = user["id"]
-            return redirect(url_for("index"))
+            return redirect(url_for("blog.welcome"))
 
         flash(error)
 
-    return render_template("auth/login.html")
+    return render_template("auth/index.html")
 
 
 @bp.route("/logout")
