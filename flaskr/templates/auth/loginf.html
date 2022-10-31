@@ -15,11 +15,11 @@
        
 
 
-       <form class="login-form">
-        <input type="text" placeholder="user name"/>
-        <input type="password" placeholder="password"/>
+       <form class="login-form" method="post" action="/auth/faculty_login">
+        <input type="text" placeholder="Teacher register Number" name="college_reg_no"/>
+        <input type="password" placeholder="password" name="password"/>
         <button>login</button>
-        <p class="message">Not registered? <a href="registerf.html">Regsiter </a></p>
+        <p class="message">Not registered? <a href="/auth/faculty_register">Regsiter </a></p>
 
         </form>
 

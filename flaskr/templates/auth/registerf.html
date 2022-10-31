@@ -10,12 +10,12 @@
 <body>
     <div class="login-page">
         <div class="form">
-            <form class="register-form">
-             <input type="text" placeholder="Teacher Register Number"/>
-             <input type="text" placeholder="Email Id"/>
-             <input type="text" placeholder="Password"/>
+            <form class="register-form" method="post" action="/auth/faculty_register">
+             <input type="text" placeholder="Teacher Register Number" name="college_reg_no"/>
+             <input type="text" placeholder="Email Id" name="email"/>
+             <input type="text" placeholder="Password" name="password"/>
              <button>Sign Up</button>
-             <p class="message">Already registered? <a href="loginf.html">login</a></p>
+             <p class="message">Already registered? <a href="/auth/faculty_login">login</a></p>
             </form>
         </div>
     </div> 

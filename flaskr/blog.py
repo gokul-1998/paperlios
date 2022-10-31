@@ -26,7 +26,7 @@ def index():
 
 @bp.route("/welcome")
 def welcome():
-    return redirect("auth/welcome.html")
+    return render_template("auth/welcome.html")
 
 def get_post(id, check_author=True):
     """Get a post and its author by id.
