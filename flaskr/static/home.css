@@ -1,0 +1,16 @@
+body{
+    background-image: linear-gradient(rgba(234, 238, 232, 0.6),rgba(0, 0, 0, 0.6)),url(bla.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.home{
+    font-size: 36px;
+    line-height: 40px;
+}
+
+.column{
+    back
+}

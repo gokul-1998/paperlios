@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HTML</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+<style>	
+	.column {
+	  flex: 33.33%;
+	  height: 200px;
+	  padding: 5px;
+	  margin: 50px;
+	  background-color: #ddcccc;
+	  text-align: center;
+	}
+	.container {
+	   display: flex;
+	}
+    
+
+    
+</style>
+</head>  
+<body>
+    <h2 class="home" align="center"> <i>Home Page</h2>
+
+	<div class="container">
+	   <div class="column">
+	     <h2> Admin Login </h2>
+         <p class="message"><a href="admin.html">Login</a></p>
+		 
+	   </div>
+	   <div class="column">
+	     <h2>Faculty Login</h2>
+         <p class="message"><a href="loginf.html">Login</a></p>
+         <p class="message"><a href="registerf.html">Register</a></p>
+		 
+	   </div>
+	   <div class="column">
+	     <h2> Student Login </h2>
+		 <p class="message"><a href="/auth/student_login">Login</a></p>
+         <p class="message"><a href="/auth/student_register">Register</a></p>
+
+	   </div>
+	</div>
+</body>
+</html>

@@ -6,8 +6,9 @@ DROP TABLE IF EXISTS post;
 
 CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username TEXT UNIQUE NOT NULL,
-  password TEXT NOT NULL
+  college_reg_no TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL,
+  email TEXT NOT NULL
 );
 
 CREATE TABLE post (

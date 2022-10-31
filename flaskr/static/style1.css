@@ -1,3 +1,5 @@
+
+
 body{
     background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(255, 255, 255, 0.6)),url(bla.jpg);
     height: 100vh;
@@ -6,26 +8,11 @@ body{
 
 }
 
-
-
-h1{
-    text-align: center;
-    color: #ffffff;
-}
-body {
-    margin: auto;
-    width: 640px; 
-    padding: 50px;
-    font-family: 'Lexend Deca', sans-serif; 
-    color: #000000;    
-  }
-
 .login-page{
     width: 360px;
     padding: 10% 0 0;
     margin: auto;
 }
-
 
 .form{
     position: realtive;
@@ -37,7 +24,6 @@ body {
     text-align: center;
 
 }
-
 
 .form input{
     font-family: "Roboto",sans-serif;
@@ -54,6 +40,7 @@ body {
 
 
 
+
 .form button{
     font-family: "Roboto",sans-serif;
     text-transform: uppercase;
@@ -66,15 +53,13 @@ body {
     font-size: 14px;
     cursor: pointer;
 
-
 }
-
-
 
 
 .form button:hover,.form button:active{
     background: #43a047;
 }
+
 
 .form.message{
     margin: 15px 0 0;
@@ -83,11 +68,9 @@ body {
 
 }
 
-
 .form.message a{
     color: #4CAF50;
     text-decoration: none;
 
 }
-
 

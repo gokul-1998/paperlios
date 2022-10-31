@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HTML</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">	
+<style>	
+	.column {
+	  flex: 33.33%;
+	  height: 200px;
+	  padding: 5px;
+	  margin: 50px;
+	  background-color: #ddcccc;
+	  text-align: center;
+	}
+	.container {
+	   display: flex;
+	}
+    
+
+    
+</style>
+</head>  
+<body>
+    <h2 class="home" align="center"> <i>Welcome</h2>
+
+	<div class="container">
+	   <div class="column">
+	     <h2> Event Proposels</h2>
+         
+		 
+	   </div>
+	   <div class="column">
+	     <h2>Duty Leave</h2>
+         
+         
+		 
+	   </div>
+	   <div class="column">
+	     <h2> Bus Pass </h2>
+		 
+
+	   </div>
+	</div>
+</body>
+</html>
