@@ -1,3 +1,4 @@
+from locale import currency
 from flask import Blueprint
 from flask import flash
 from flask import g
@@ -6,7 +7,7 @@ from flask import render_template
 from flask import request
 from flask import url_for
 from werkzeug.exceptions import abort
-
+from .auth import cur_user
 from flaskr.auth import login_required
 from flaskr.db import get_db
 
@@ -109,12 +110,11 @@ def add_faculty_proposal():
         get_db()
         .execute(
             "SELECT event_description,status"
-            " FROM proposal "
-            " WHERE to_email = ?",
-            ( g.user["email"],),
+            " FROM proposal",
         )
         .fetchall())
     print("aaaa",g.user["email"])
+    print("bbbb",cur_user)
     return render_template("blog/faculty_proposal.html",proposal=proposal)
 
 @bp.route("/student_duty_leave")

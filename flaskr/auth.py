@@ -172,7 +172,7 @@ def student_login():
         user = db.execute(
             "SELECT * FROM user WHERE college_reg_no = ?", (college_reg_no,)
         ).fetchone()
-        cur_user=user
+        cur_user=[user]
         if user is None:
             error = "Incorrect college_reg_no."
         elif not check_password_hash(user["password"], password):
