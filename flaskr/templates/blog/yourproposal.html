@@ -30,6 +30,14 @@
                         <span class="sr-only">Edit</span>
                     </th>
                 </tr>
+                {% for x in proposal %}
+                <tr>
+                    <td>{{x.event_description}}</td>
+                    <td>{{x.status}}</td>
+                  </tr>
+                {% endfor %}
+                
+                
             </thead>
         </table>
         </div>

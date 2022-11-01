@@ -30,7 +30,17 @@ def welcome():
 
 @bp.route("/student_proposals")
 def new_proposals():
-    return render_template("blog/yourproposal.html")
+    proposal = (
+        get_db()
+        .execute(
+            "SELECT event_description,status"
+            " FROM proposal "
+            " WHERE author_id = ?",
+            ( g.user["id"],),
+        )
+        .fetchall())
+    print(g.user['id'])
+    return render_template("blog/yourproposal.html",proposal=proposal)
 
 
 @bp.route("/add_new_proposal", methods=("GET", "POST"))
@@ -53,18 +63,8 @@ def add_new_proposal():
                 (to_email, event_description, g.user["id"]),
             )
             db.commit()
-            return redirect(url_for("blog.student_proposals"))
-    faculty = (
-        get_db()
-        .execute(
-            "SELECT email"
-            " FROM faculty"
-        )
-        .fetchall()
-    )
-    return render_template("blog/newproposal.html",faculty=faculty)
-    return render_template("blog/newproposal.html")
-        
+            print("before commit",g.user['id'])
+            return redirect(url_for("blog.new_proposals"))
     faculty = (
         get_db()
         .execute(
@@ -102,7 +102,7 @@ def get_post(id, check_author=True):
             "SELECT p.id, title, body, created, author_id, username"
             " FROM post p JOIN user u ON p.author_id = u.id"
             " WHERE p.id = ?",
-            (id,),
+            ( g.user["id"],),
         )
         .fetchone()
     )

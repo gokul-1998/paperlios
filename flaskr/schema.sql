@@ -23,6 +23,7 @@ CREATE TABLE proposal (
   to_email TEXT NOT NULL,
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   event_description TEXT NOT NULL,
+  status TEXT DEFAULT false,
   FOREIGN KEY (author_id) REFERENCES user (id),
   FOREIGN KEY (to_email) REFERENCES faculty (email)
 );
