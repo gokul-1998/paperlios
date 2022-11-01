@@ -22,11 +22,17 @@ def index():
     #     " FROM post p JOIN user u ON p.author_id = u.id"
     #     " ORDER BY created DESC"
     # ).fetchall()
+    cur_user=[]
+    print(cur_user)
     return render_template("auth/home.html")
 
 @bp.route("/welcome")
 def welcome():
     return render_template("auth/welcome.html")
+
+@bp.route("/faculty_welcome")
+def faculty_welcome():
+    return render_template("auth/welcomef.html")
 
 @bp.route("/student_proposals")
 def new_proposals():
@@ -75,14 +81,98 @@ def add_new_proposal():
     )
     return render_template("blog/newproposal.html",faculty=faculty)
 
+
+@bp.route("/faculty_proposals", methods=("GET", "POST"))
+@login_required
+def add_faculty_proposal():
+    """Create a new post for the current user."""
+    if request.method == "POST":
+        to_email = request.form["to_email"]
+        event_description = request.form["event_description"]
+        error = None
+
+        if not event_description:
+            error = "event_description is required."
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                "INSERT INTO proposal (to_email, event_description, author_id) VALUES (?, ?, ?)",
+                (to_email, event_description, g.user["id"]),
+            )
+            db.commit()
+            print("before commit",g.user['id'])
+            return redirect(url_for("blog.new_proposals"))
+    proposal = (
+        get_db()
+        .execute(
+            "SELECT event_description,status"
+            " FROM proposal "
+            " WHERE to_email = ?",
+            ( g.user["email"],),
+        )
+        .fetchall())
+    print("aaaa",g.user["email"])
+    return render_template("blog/faculty_proposal.html",proposal=proposal)
+
 @bp.route("/student_duty_leave")
 def student_duty_leave():
-    return render_template("blog/yourproposal.html")
+    duty_leave=(
+        get_db()
+        .execute(
+            "SELECT duty_leave_description,status"
+            " FROM dutyleave "
+           
+        )
+        .fetchall())
+    return render_template("blog/dutyleave.html",duty_leave=duty_leave)
+
+@bp.route("/add_student_duty_leave", methods=("GET", "POST"))
+def add_student_duty_leave():
+    """Create a new post for the current user."""
+    if request.method == "POST":
+        to_email = request.form["to_email"]
+        duty_leave_description = request.form["duty_leave_description"]
+        error = None
+
+        if not duty_leave_description:
+            error = "duty_leave_description is required."
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                "INSERT INTO dutyleave (to_email, duty_leave_description, author_id) VALUES (?, ?, ?)",
+                (to_email, duty_leave_description, g.user["id"]),
+            )
+            db.commit()
+            print("before commit",g.user['id'])
+            return redirect(url_for("blog.student_duty_leave"))
+    faculty = (
+        get_db()
+        .execute(
+            "SELECT email"
+            " FROM faculty"
+        )
+        .fetchall()
+    )
+    return render_template("blog/newdutyleave.html",faculty=faculty)
+
 
 @bp.route("/student_bus_pass")
 def student_bus_pass():
     return render_template("blog/yourproposal.html")
 
+@bp.route("/faculty_duty_leave")
+def faculty_duty_leave():
+    return render_template("blog/yourproposal.html")
+
+@bp.route("/faculty_bus_pass")
+def faculty_bus_pass():
+    return render_template("blog/yourproposal.html")
 
 def get_post(id, check_author=True):
     """Get a post and its author by id.

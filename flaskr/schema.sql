@@ -27,3 +27,14 @@ CREATE TABLE proposal (
   FOREIGN KEY (author_id) REFERENCES user (id),
   FOREIGN KEY (to_email) REFERENCES faculty (email)
 );
+
+CREATE TABLE dutyleave (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  author_id INTEGER NOT NULL,
+  to_email TEXT NOT NULL,
+  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  duty_leave_description TEXT NOT NULL,
+  status TEXT DEFAULT false,
+  FOREIGN KEY (author_id) REFERENCES user (id),
+  FOREIGN KEY (to_email) REFERENCES faculty (email)
+);

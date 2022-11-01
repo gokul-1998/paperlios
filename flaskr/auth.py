@@ -15,7 +15,7 @@ import os
 from flaskr.db import get_db
 
 bp = Blueprint("auth", __name__, url_prefix="/auth")
-
+cur_user=[]
 IMG_FOLDER = os.path.join('static', 'images')
 
 def login_required(view):
@@ -141,7 +141,7 @@ def faculty_login():
         user = db.execute(
             "SELECT * FROM faculty WHERE college_reg_no = ?", (college_reg_no,)
         ).fetchone()
-
+        cur_user=[user]
         if user is None:
             error = "Incorrect college_reg_no."
         elif not check_password_hash(user["password"], password):
@@ -151,7 +151,8 @@ def faculty_login():
             # store the user id in a new session and return to the index
             session.clear()
             session["user_id"] = user["id"]
-            return redirect(url_for("blog.welcome"))
+            print("usesss",g.user)
+            return redirect(url_for("blog.faculty_welcome"))
 
         flash(error)
 
@@ -171,7 +172,7 @@ def student_login():
         user = db.execute(
             "SELECT * FROM user WHERE college_reg_no = ?", (college_reg_no,)
         ).fetchone()
-
+        cur_user=user
         if user is None:
             error = "Incorrect college_reg_no."
         elif not check_password_hash(user["password"], password):
@@ -192,4 +193,5 @@ def student_login():
 def logout():
     """Clear the current session, including the stored user id."""
     session.clear()
+    cur_user=[]
     return redirect(url_for("index"))

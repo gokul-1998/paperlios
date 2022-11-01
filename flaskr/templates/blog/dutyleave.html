@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duty Leaves</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="bg-cover h-32 w-full bg-[url('/images/background.jpg')]">
+    <h1 class="text-white text-center  text-5xl font-bold mt-20">
+        Duty Leaves
+    </h1>
+    <div class="overflow-x-auto relative shadow-md sm:rounded-lg mt-20">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="py-3 px-6">
+                        Past Duty Leave
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                       Reason
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Status
+                    </th>
+
+                    <th scope="col" class="py-3 px-6">
+                        <span class="sr-only">Edit</span>
+                    </th>
+                    {% for x in duty_leave %}
+                <tr>
+                    <td>{{x.duty_leave_description}}</td>
+                    <td>{{x.status}}</td>
+                  </tr>
+                {% endfor %}
+                </tr>
+            </thead>
+        </table>
+        </div>
+        <a class="h-32 flex flex-row justify-center" href="/add_student_duty_leave">
+                <i class="fa fa-plus ali" style="font-size:36px"   ></i>
+            </a>
+</body>
+
+</html>

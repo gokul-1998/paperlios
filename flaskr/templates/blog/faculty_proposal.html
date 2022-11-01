@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Proposal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="bg-cover h-32 w-full bg-[url('/images/background.jpg')]">
+    <h1 class="text-white text-center  text-5xl font-bold mt-20">
+        Your Proposal
+    </h1>
+    <div class="overflow-x-auto relative shadow-md sm:rounded-lg mt-20">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="py-3 px-6">
+                        Description
+                    </th>
+                   
+                    <th scope="col" class="py-3 px-6">
+                        Status
+                    </th>
+
+                    <th scope="col" class="py-3 px-6">
+                        <span class="sr-only">Edit</span>
+                    </th>
+                </tr>
+                {% for x in proposal %}
+                <tr>
+                    <td>{{x.event_description}}</td>
+                    <td>{{x.status}}</td>
+                    <td>{{approve}}</td>
+                  </tr>
+                {% endfor %}
+                
+                
+            </thead>
+        </table>
+        </div>
+        
+</body>
+
+</html>
